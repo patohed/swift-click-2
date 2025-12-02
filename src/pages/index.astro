@@ -1,16 +1,117 @@
 ---
-
+import '../styles/global.css'
 ---
 
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>SwiftClick S.A. - Marketing Digital</title>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="bg-gray-900 text-white font-['Inter']">
+		<!-- Primera sección: Hero -->
+		<section class="min-h-screen relative z-10" style="background: radial-gradient(ellipse 150% 100% at center, #000000 0%, #1a1a2e 40%, #16213e 60%, #6a5acd 85%, #9d8df1 100%);">
+			<!-- Header -->
+			<header class="absolute top-0 left-0 w-full z-20 p-8">
+				<div class="flex items-center">
+					<!-- Logo -->
+					<div class="flex items-center space-x-3">
+						<!-- SwiftClick Icon -->
+						<div class="relative">
+							<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M20 0L24.6 15.4L40 20L24.6 24.6L20 40L15.4 24.6L0 20L15.4 15.4L20 0Z" fill="white"/>
+							</svg>
+						</div>
+						<!-- Brand Text -->
+						<div>
+							<div class="text-2xl font-bold tracking-tight">
+								<span class="text-white">Swift</span><span class="text-blue-400">Click</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Marketing Digital Subtitle -->
+				<div class="mt-4 ml-12">
+					<span class="text-gray-300 text-sm font-medium tracking-wide">Marketing Digital</span>
+				</div>
+			</header>
+
+			<!-- Main Content -->
+			<main class="flex items-center justify-start min-h-screen px-8 lg:px-16">
+				<div class="max-w-4xl">
+					<!-- Main Headline -->
+					<h1 class="text-5xl lg:text-7xl font-bold leading-tight mb-8">
+						<span class="text-purple-300">Partner</span> 
+						<span class="text-purple-200">Estratégico</span> 
+						<span class="text-white">en</span> 
+						<span class="text-white">Inversión</span><br>
+						<span class="text-white">Digital</span> 
+						<span class="text-white">a</span> 
+						<span class="text-purple-200">Gran</span> 
+						<span class="text-purple-200">Escala</span>
+					</h1>
+
+					<!-- Decorative Line -->
+					<div class="w-full h-px bg-gradient-to-r from-purple-400 via-blue-400 to-transparent mb-12"></div>
+
+					<!-- Company Name -->
+					<h2 class="text-4xl lg:text-5xl font-bold text-purple-300 mb-6">
+						Swiftclick S.A.
+					</h2>
+
+					<!-- Description -->
+					<p class="text-xl lg:text-2xl text-gray-300 font-medium tracking-wide">
+						Google Partner — Multicanal — Performance & Escalabilidad
+					</p>
+				</div>
+			</main>
+
+			<!-- Light effects on sides -->
+			<div class="absolute inset-0 opacity-30">
+				<!-- Side lighting effects -->
+				<div class="absolute left-0 top-0 w-64 h-full" style="background: linear-gradient(to right, rgba(157, 141, 241, 0.4) 0%, transparent 100%);"></div>
+				<div class="absolute right-0 top-0 w-64 h-full" style="background: linear-gradient(to left, rgba(157, 141, 241, 0.4) 0%, transparent 100%);"></div>
+				
+				<!-- Additional corner lights -->
+				<div class="absolute top-0 right-0 w-96 h-96" style="background: radial-gradient(circle at top right, rgba(157, 141, 241, 0.6) 0%, rgba(138, 101, 238, 0.4) 40%, transparent 70%);"></div>
+				<div class="absolute bottom-0 left-0 w-96 h-96" style="background: radial-gradient(circle at bottom left, rgba(157, 141, 241, 0.6) 0%, rgba(138, 101, 238, 0.4) 40%, transparent 70%);"></div>
+			</div>
+		</section>
+
+		<!-- Segunda sección: Introducción / About Us -->
+		<section class="min-h-screen relative z-10" style="background: linear-gradient(to right, #000000 0%, #1a1a2e 20%, #2d3561 40%, #4a5b99 60%, #6b7ec7 80%, #89a7ff 100%);">
+			<!-- Contenido de la segunda sección -->
+			<div class="flex items-end min-h-screen pb-16">
+				<!-- Lado izquierdo: Texto -->
+				<div class="w-1/2 px-16">
+					<div class="max-w-lg">
+						<h2 class="text-5xl lg:text-6xl font-normal text-gray-300 mb-4 tracking-wide">
+							Introduccion
+						</h2>
+						<h3 class="text-5xl lg:text-6xl font-normal text-white mb-8 leading-tight">
+							About Us
+						</h3>
+					</div>
+				</div>
+
+				<!-- Lado derecho: Número grande -->
+				<div class="w-1/2 flex items-end justify-center h-full">
+					<div class="text-center" style="line-height: 0.8; transform: translateY(calc(20% - 38px));">
+						<span class="text-[35rem] lg:text-[40rem] font-light leading-none block" style="color: #b8a9ff; text-shadow: 0 0 60px rgba(184, 169, 255, 0.4); line-height: 0.7;">
+							01
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Efectos de luz sutiles -->
+			<div class="absolute inset-0 opacity-20">
+				<div class="absolute right-0 top-1/4 w-64 h-64" style="background: radial-gradient(circle, rgba(184, 169, 255, 0.4) 0%, transparent 70%);"></div>
+				<div class="absolute left-0 bottom-1/4 w-64 h-64" style="background: radial-gradient(circle, rgba(45, 53, 97, 0.6) 0%, transparent 70%);"></div>
+			</div>
+		</section>
 	</body>
 </html>
