@@ -5,35 +5,35 @@ import Logo from '../components/Logo.astro';
 ---
 
 <BaseLayout title="Infraestructura - SwiftClick">
-	<section class="min-h-screen relative z-10 overflow-hidden px-4 sm:px-6 md:px-8 lg:px-16 flex flex-col" style="width: 100vw; height: 100vh; background: linear-gradient(135deg, #000000 0%, #0a0a0f 40%, #13131f 70%, #1a1a2e 100%);">
+	<section class="min-h-screen relative z-10 overflow-hidden px-4 sm:px-6 md:px-8 lg:px-16 flex flex-col" style="width: 100vw; min-height: 100vh; background: linear-gradient(135deg, #000000 0%, #0a0a0f 40%, #13131f 70%, #1a1a2e 100%);">
 		
 		<!-- Reflejo 1: Destello violeta principal -->
-		<div class="absolute top-0 right-0 w-64 h-64 pointer-events-none" style="background: radial-gradient(ellipse 80% 50% at center, rgba(157, 141, 241, 0.25) 0%, rgba(106, 90, 205, 0.12) 40%, transparent 70%); filter: blur(40px); transform: rotate(-30deg);"></div>
+		<div class="absolute top-0 right-0 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 pointer-events-none" style="background: radial-gradient(ellipse 80% 50% at center, rgba(157, 141, 241, 0.25) 0%, rgba(106, 90, 205, 0.12) 40%, transparent 70%); filter: blur(40px); transform: rotate(-30deg);"></div>
 		
 		<!-- Reflejo 2: Destello violeta secundario -->
-		<div class="absolute top-20 right-10 w-56 h-56 pointer-events-none" style="background: radial-gradient(ellipse 70% 60% at center, rgba(138, 123, 220, 0.2) 0%, rgba(90, 80, 180, 0.1) 40%, transparent 70%); filter: blur(35px); transform: rotate(20deg);"></div>
+		<div class="absolute top-10 sm:top-16 md:top-20 right-5 sm:right-8 md:right-10 w-28 h-28 sm:w-40 sm:h-40 md:w-56 md:h-56 pointer-events-none" style="background: radial-gradient(ellipse 70% 60% at center, rgba(138, 123, 220, 0.2) 0%, rgba(90, 80, 180, 0.1) 40%, transparent 70%); filter: blur(35px); transform: rotate(20deg);"></div>
 		
 		<!-- Logo en la esquina superior izquierda -->
-		<div class="absolute top-6 sm:top-8 left-4 sm:left-6 md:left-8 lg:left-16 z-20">
+		<div class="absolute top-4 sm:top-6 md:top-8 left-3 sm:left-4 md:left-6 lg:left-8 xl:left-16 z-20">
 			<Logo variant="default" size="md" showText={true} />
 		</div>
 
 		<!-- Contenedor principal centrado -->
-		<div class="flex-1 flex flex-col items-center justify-center max-w-7xl mx-auto w-full py-16 sm:py-20">
+		<div class="flex-1 flex flex-col items-center justify-center max-w-7xl mx-auto w-full py-12 sm:py-16 md:py-20 pt-20 sm:pt-16">
 			
 			<!-- Título principal -->
-			<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-white text-center mb-16 sm:mb-20 md:mb-24 leading-tight max-w-6xl tracking-tight">
+			<h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-light text-white text-center mb-10 sm:mb-14 md:mb-18 lg:mb-24 leading-tight max-w-6xl tracking-tight px-2">
 				Infraestructura preparada<br>para grandes anunciantes
 			</h1>
 
 			<!-- Grid de 4 tarjetas (2x2) con bordes especiales -->
-			<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8 w-full max-w-6xl">
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 w-full max-w-6xl">
 				
 				<!-- Tarjeta 1: Certificación Google Partner -->
 				<div class="relative group">
 					<div class="absolute inset-0 opacity-50 blur-xl transition-opacity duration-300 group-hover:opacity-70" style="background: linear-gradient(135deg, #0a0a0f 0%, #2a2050 50%, #4a3570 100%); border-radius: 9999px 9999px 150px 9999px;"></div>
-					<div class="relative px-8 sm:px-10 md:px-12 lg:px-16 py-5 sm:py-6 md:py-7 flex items-center justify-center text-center border border-purple-400/20" style="background: linear-gradient(135deg, rgba(10, 10, 15, 0.9) 0%, rgba(42, 32, 80, 0.9) 50%, rgba(74, 53, 112, 0.9) 100%); backdrop-filter: blur(10px); border-radius: 9999px 9999px 150px 9999px;">
-						<p class="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed font-light tracking-wide" style="color: #d8c8ff;">
+					<div class="relative px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-4 sm:py-5 md:py-6 lg:py-7 flex items-center justify-center text-center border border-purple-400/20" style="background: linear-gradient(135deg, rgba(10, 10, 15, 0.9) 0%, rgba(42, 32, 80, 0.9) 50%, rgba(74, 53, 112, 0.9) 100%); backdrop-filter: blur(10px); border-radius: 9999px 9999px 150px 9999px;">
+						<p class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed font-light tracking-wide" style="color: #d8c8ff;">
 							Certificación oficial<br><span class="font-semibold">Google Partner.</span>
 						</p>
 					</div>
@@ -72,12 +72,12 @@ import Logo from '../components/Logo.astro';
 			</div>
 		</div>
 
-		<!-- Número 05 y línea en el bottom -->
-		<div class="absolute bottom-0 left-0 right-0 pb-6 sm:pb-8">
+		<!-- Número 07 y línea en el bottom -->
+		<div class="absolute bottom-0 left-0 right-0 pb-4 sm:pb-6 md:pb-8">
 			<div class="px-4 sm:px-6 md:px-8 lg:px-16">
 				<div class="flex justify-end items-end mb-2" style="margin-right: 5px;">
-					<span class="text-4xl sm:text-5xl md:text-6xl font-bold leading-none" style="color: #b8a9ff; text-shadow: 0 0 40px rgba(184, 169, 255, 0.3);">
-						05
+					<span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-none" style="color: #b8a9ff; text-shadow: 0 0 40px rgba(184, 169, 255, 0.3);">
+						07
 					</span>
 				</div>
 				<div class="w-full h-0.5" style="background: linear-gradient(to right, transparent 0%, #b8a9ff 50%, transparent 100%);"></div>

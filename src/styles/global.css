@@ -101,43 +101,54 @@ body {
   transition: all 0.3s ease;
 }
 
-/* Responsive text scaling */
-@media (max-width: 640px) {
-  /* Mobile */
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Base font sizes para mejor legibilidad */
+html {
+  font-size: 16px;
+}
+
+/* Mobile First - Extra Small devices (phones, less than 640px) */
+@media (max-width: 639px) {
   html {
     font-size: 14px;
   }
   
-  .text-3xl {
-    font-size: 1.75rem;
-    line-height: 1.2;
+  body {
+    overflow-x: hidden;
   }
   
-  .text-5xl {
-    font-size: 2.25rem;
-    line-height: 1.1;
-  }
-  
-  .text-7xl {
-    font-size: 2.75rem;
-    line-height: 1.1;
+  /* Asegurar que los elementos no se desborden */
+  section {
+    overflow-x: hidden;
   }
 }
 
-@media (min-width: 641px) and (max-width: 768px) {
-  /* Tablet */
+/* Small devices (tablets, 640px and up) */
+@media (min-width: 640px) and (max-width: 767px) {
   html {
     font-size: 15px;
   }
-  
-  .text-5xl {
-    font-size: 2.5rem;
-    line-height: 1.1;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  html {
+    font-size: 16px;
   }
-  
-  .text-7xl {
-    font-size: 3.5rem;
-    line-height: 1.1;
+}
+
+/* Large devices (desktops, 1024px and up) */
+@media (min-width: 1024px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Extra large devices (large desktops, 1280px and up) */
+@media (min-width: 1280px) {
+  html {
+    font-size: 16px;
   }
 }
 
@@ -146,11 +157,31 @@ body {
   * {
     -webkit-tap-highlight-color: transparent;
   }
+  
+  /* Aumentar áreas de toque para mejor usabilidad */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }
 
-/* Improve readability on small screens */
-@media (max-width: 640px) {
-  body {
-    overflow-x: hidden;
+/* Mejorar contraste y legibilidad en pantallas pequeñas */
+@media (max-width: 639px) {
+  /* Asegurar que el texto sea legible */
+  h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Pills de contacto más pequeñas pero legibles */
+  .contact-pill {
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Landscape mode en móviles */
+@media (max-width: 767px) and (orientation: landscape) {
+  section {
+    min-height: auto !important;
   }
 }
