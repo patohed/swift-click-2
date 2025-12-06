@@ -1,0 +1,86 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+}
+
+const { title = 'SwiftClick S.A. - Marketing Digital' } = Astro.props;
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+		<ViewTransitions />
+		<style is:global>
+			@keyframes slideFromRight {
+				from {
+					opacity: 0;
+					transform: translateX(100%) scale(0.95) rotateY(-15deg);
+				}
+				to {
+					opacity: 1;
+					transform: translateX(0) scale(1) rotateY(0deg);
+				}
+			}
+
+			@keyframes slideFromLeft {
+				from {
+					opacity: 0;
+					transform: translateX(-100%) scale(0.95) rotateY(15deg);
+				}
+				to {
+					opacity: 1;
+					transform: translateX(0) scale(1) rotateY(0deg);
+				}
+			}
+
+			@keyframes slideToLeft {
+				from {
+					opacity: 1;
+					transform: translateX(0) scale(1) rotateY(0deg);
+				}
+				to {
+					opacity: 0;
+					transform: translateX(-30%) scale(0.9) rotateY(15deg);
+				}
+			}
+
+			@keyframes slideToRight {
+				from {
+					opacity: 1;
+					transform: translateX(0) scale(1) rotateY(0deg);
+				}
+				to {
+					opacity: 0;
+					transform: translateX(30%) scale(0.9) rotateY(-15deg);
+				}
+			}
+
+			::view-transition-old(root) {
+				animation: slideToLeft 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+			}
+
+			::view-transition-new(root) {
+				animation: slideFromRight 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+			}
+
+			html[data-direction="back"]::view-transition-old(root) {
+				animation: slideToRight 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+			}
+
+			html[data-direction="back"]::view-transition-new(root) {
+				animation: slideFromLeft 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+			}
+		</style>
+	</head>
+	<body class="bg-gray-900 text-white font-['Inter'] overflow-hidden">
+		<slot />
+	</body>
+</html>
