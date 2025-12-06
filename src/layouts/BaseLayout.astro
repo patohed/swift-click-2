@@ -16,7 +16,9 @@ const { title = 'SwiftClick S.A. - Marketing Digital' } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+		<!-- Tipografías según Manual de Marca SwiftClick -->
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.cdnfonts.com/css/tt-commons" rel="stylesheet">
 		<ViewTransitions />
 		<style is:global>
 			@keyframes slideFromRight {
@@ -80,7 +82,7 @@ const { title = 'SwiftClick S.A. - Marketing Digital' } = Astro.props;
 			}
 		</style>
 	</head>
-	<body class="bg-gray-900 text-white font-['Inter'] overflow-hidden">
+	<body class="bg-gray-900 text-white overflow-hidden" style="font-family: 'TT Commons', 'Roboto', sans-serif;">
 		<slot />
 	</body>
 </html>

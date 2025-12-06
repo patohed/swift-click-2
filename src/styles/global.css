@@ -1,5 +1,64 @@
 @import "tailwindcss";
 
+/* SwiftClick Manual de Marca - Sistema de Diseño Oficial */
+
+/* ========== TIPOGRAFÍAS ========== */
+/* Principal: TT Commons Pro */
+/* Secundaria: Roboto (para contraste jerárquico) */
+
+h1 {
+	font-family: 'TT Commons', sans-serif;
+	font-weight: 800; /* Extra Bold - Título Principal */
+}
+
+h2 {
+	font-family: 'TT Commons', sans-serif;
+	font-weight: 700; /* Bold - Título Secundario */
+}
+
+h3 {
+	font-family: 'TT Commons', sans-serif;
+	font-weight: 600; /* DemiBold - Encabezados/Secciones */
+}
+
+p {
+	font-family: 'TT Commons', sans-serif;
+	font-weight: 400; /* Regular - Párrafos */
+}
+
+.font-roboto {
+	font-family: 'Roboto', sans-serif;
+}
+
+/* ========== GRADIENTES OFICIALES ========== */
+/* Gradiente 1: #6444c0 → #4355dc */
+.bg-gradient-brand-1 {
+	background: linear-gradient(135deg, #6444c0 0%, #4355dc 100%);
+}
+
+/* Gradiente 2: #0e0e14 → #4e318a */
+.bg-gradient-brand-2 {
+	background: linear-gradient(135deg, #0e0e14 0%, #4e318a 100%);
+}
+
+/* Gradiente 3: #0e0e14 → #253588 */
+.bg-gradient-brand-3 {
+	background: linear-gradient(135deg, #0e0e14 0%, #253588 100%);
+}
+
+/* Variantes radiales de los gradientes oficiales */
+.bg-radial-brand-1 {
+	background: radial-gradient(ellipse at center, #4355dc 0%, #6444c0 100%);
+}
+
+.bg-radial-brand-2 {
+	background: radial-gradient(ellipse at center, #4e318a 0%, #0e0e14 100%);
+}
+
+.bg-radial-brand-3 {
+	background: radial-gradient(ellipse at center, #253588 0%, #0e0e14 100%);
+}
+
 /* Custom gradients and styles for SwiftClick */
 .bg-gradient-radial {
   background: radial-gradient(circle, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 70%);

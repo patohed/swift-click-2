@@ -1,0 +1,40 @@
+---
+interface Props {
+	variant?: 'default' | 'light' | 'dark';
+	size?: 'sm' | 'md' | 'lg';
+	showText?: boolean;
+}
+
+const { variant = 'default', size = 'md', showText = true } = Astro.props;
+
+const sizeClasses = {
+	sm: 'w-8 h-8 sm:w-10 sm:h-10',
+	md: 'w-12 h-12 sm:w-16 sm:h-16',
+	lg: 'w-16 h-16 sm:w-20 sm:h-20'
+};
+
+const textSizeClasses = {
+	sm: 'text-xl sm:text-2xl',
+	md: 'text-2xl sm:text-3xl',
+	lg: 'text-3xl sm:text-4xl'
+};
+---
+
+<div class="flex items-center space-x-2 sm:space-x-3">
+	<!-- SwiftClick Logo SVG -->
+	<div class="relative">
+		<img 
+			src="/swift_click.svg" 
+			alt="SwiftClick Logo" 
+			class={sizeClasses[size]}
+		/>
+	</div>
+	
+	{showText && (
+		<div>
+			<div class={`${textSizeClasses[size]} font-bold tracking-tight`}>
+				<span class="text-white">Swift</span><span class="text-blue-400">Click</span>
+			</div>
+		</div>
+	)}
+</div>
