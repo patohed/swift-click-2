@@ -111,16 +111,36 @@ html {
 /* Mobile First - Extra Small devices (phones, less than 640px) */
 @media (max-width: 639px) {
   html {
-    font-size: 14px;
+    font-size: 13px;
   }
   
   body {
     overflow-x: hidden;
+    width: 100vw;
+    max-width: 100vw;
+    position: relative;
   }
   
   /* Asegurar que los elementos no se desborden */
   section {
     overflow-x: hidden;
+    width: 100vw;
+    max-width: 100vw;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Mejorar legibilidad en móvil */
+  h1 {
+    line-height: 1.3 !important;
+  }
+  
+  h2, h3 {
+    line-height: 1.4 !important;
+  }
+  
+  p {
+    line-height: 1.6 !important;
   }
 }
 
