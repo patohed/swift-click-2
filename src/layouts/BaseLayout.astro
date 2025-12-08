@@ -48,16 +48,16 @@ const { title = 'SwiftClick S.A. - Marketing Digital' } = Astro.props;
 			}
 
 			::view-transition-old(root) {
-				animation: fadeOut 0.3s ease-out;
+				animation: fadeOut 0.8s ease-out;
 			}
 
 			::view-transition-new(root) {
-				animation: fadeIn 0.3s ease-in;
+				animation: fadeIn 0.8s ease-in;
 			}
 
 			/* Mantener el fondo oscuro durante la transición */
 			::view-transition-group(root) {
-				animation-duration: 0.3s;
+				animation-duration: 0.8s;
 			}
 
 			html[data-direction="back"]::view-transition-new(root) {
