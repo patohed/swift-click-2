@@ -75,11 +75,13 @@ p {
   );
 }
 
-/* Ensure full height and smooth animations */
-body {
+/* Ensure full height, smooth animations and dark background */
+html, body {
   height: 100vh;
   margin: 0;
   padding: 0;
+  background: #0a0a0f;
+  overflow-x: hidden;
 }
 
 /* Enhanced text visibility against dark center */

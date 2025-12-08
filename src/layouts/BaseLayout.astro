@@ -23,60 +23,41 @@ const { title = 'SwiftClick S.A. - Marketing Digital' } = Astro.props;
 		<link href="https://fonts.cdnfonts.com/css/tt-commons" rel="stylesheet">
 		<ViewTransitions />
 		<style is:global>
-			@keyframes slideFromRight {
+			/* Asegurar que el body siempre tenga fondo oscuro */
+			html, body {
+				background: #0a0a0f;
+				min-height: 100vh;
+			}
+
+			@keyframes fadeIn {
 				from {
 					opacity: 0;
-					transform: translateX(100%) scale(0.95) rotateY(-15deg);
 				}
 				to {
 					opacity: 1;
-					transform: translateX(0) scale(1) rotateY(0deg);
 				}
 			}
 
-			@keyframes slideFromLeft {
-				from {
-					opacity: 0;
-					transform: translateX(-100%) scale(0.95) rotateY(15deg);
-				}
-				to {
-					opacity: 1;
-					transform: translateX(0) scale(1) rotateY(0deg);
-				}
-			}
-
-			@keyframes slideToLeft {
+			@keyframes fadeOut {
 				from {
 					opacity: 1;
-					transform: translateX(0) scale(1) rotateY(0deg);
 				}
 				to {
 					opacity: 0;
-					transform: translateX(-30%) scale(0.9) rotateY(15deg);
-				}
-			}
-
-			@keyframes slideToRight {
-				from {
-					opacity: 1;
-					transform: translateX(0) scale(1) rotateY(0deg);
-				}
-				to {
-					opacity: 0;
-					transform: translateX(30%) scale(0.9) rotateY(-15deg);
 				}
 			}
 
 			::view-transition-old(root) {
-				animation: slideToLeft 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+				animation: fadeOut 0.3s ease-out;
 			}
 
 			::view-transition-new(root) {
-				animation: slideFromRight 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+				animation: fadeIn 0.3s ease-in;
 			}
 
-			html[data-direction="back"]::view-transition-old(root) {
-				animation: slideToRight 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+			/* Mantener el fondo oscuro durante la transición */
+			::view-transition-group(root) {
+				animation-duration: 0.3s;
 			}
 
 			html[data-direction="back"]::view-transition-new(root) {
