@@ -8,9 +8,9 @@ interface Props {
 const { variant = 'default', size = 'md', showText = true } = Astro.props;
 
 const sizeClasses = {
-	sm: 'w-6 h-6 sm:w-10 sm:h-10',
-	md: 'w-10 h-10 sm:w-16 sm:h-16',
-	lg: 'w-12 h-12 sm:w-20 sm:h-20'
+	sm: 'w-10 h-10 sm:w-16 sm:h-16',
+	md: 'w-16 h-16 sm:w-24 sm:h-24',
+	lg: 'w-20 h-20 sm:w-32 sm:h-32'
 };
 
 const textSizeClasses = {
@@ -30,11 +30,5 @@ const textSizeClasses = {
 		/>
 	</div>
 	
-	{showText && (
-		<div>
-			<div class={`${textSizeClasses[size]} font-bold tracking-tight`}>
-				<span class="text-white">Swift</span><span class="text-blue-400">Click</span>
-			</div>
-		</div>
-	)}
+
 </div>

@@ -7,90 +7,137 @@ interface Props {
 const { currentPage, totalPages } = Astro.props;
 
 const pages = [
-	{ path: '/', label: 'Hero' },
-	{ path: '/about', label: 'About Us' },
+	{ path: '/', label: 'Home' },
 	{ path: '/diferencial', label: 'Diferencial' },
 	{ path: '/filosofia', label: 'Filosofía' },
-	{ path: '/trabajo', label: 'Trabajo' },
-	{ path: '/integracion', label: 'Integración' },
 	{ path: '/infraestructura', label: 'Infraestructura' },
-	{ path: '/vision', label: 'Visión' },
-	{ path: '/vision-detalle', label: 'Visión Detalle' },
+	{ path: '/integracion', label: 'Integración' },
 	{ path: '/estructura', label: 'Estructura' },
-	{ path: '/contacto', label: 'Contacto' }
+	{ path: '/vision-detalle', label: 'Visión' },
+	{ path: '/contacto', label: 'Contacto' },
+	{ path: '/formulario', label: 'Formulario' }
 ];
 
 const prevPage = currentPage > 1 ? pages[currentPage - 2] : null;
 const nextPage = currentPage < totalPages ? pages[currentPage] : null;
 ---
 
-<div class="fixed right-2 sm:right-4 md:right-6 lg:right-8 top-[20%] sm:top-1/2 transform -translate-y-1/2 z-50 flex gap-2 sm:gap-3 md:gap-4">
-	{prevPage && (
-		<a 
-			href={prevPage.path}
-			class="nav-btn opacity-50 hover:opacity-100 transition-opacity duration-300"
-			aria-label={`Página anterior: ${prevPage.label}`}
-		>
-			<svg class="w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<circle cx="12" cy="12" r="11" stroke="#b8a9ff" stroke-width="2" fill="rgba(184, 169, 255, 0.2)"/>
-				<path d="M16 12L8 12M8 12L12 8M8 12L12 16" stroke="#b8a9ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-			</svg>
-		</a>
-	)}
-	
-	{!prevPage && (
-		<button 
-			disabled
-			class="nav-btn opacity-30 cursor-not-allowed"
-			aria-label="No hay página anterior"
-		>
-			<svg class="w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<circle cx="12" cy="12" r="11" stroke="#b8a9ff" stroke-width="2" fill="rgba(184, 169, 255, 0.2)"/>
-				<path d="M16 12L8 12M8 12L12 8M8 12L12 16" stroke="#b8a9ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-			</svg>
-		</button>
-	)}
+<div class="fixed top-4 sm:top-6 md:top-8 left-1/2 transform -translate-x-1/2 z-50 flex gap-4 sm:gap-6 pointer-events-none">
+	<!-- Botón anterior (izquierda) -->
+	<div class="pointer-events-auto">
+		{prevPage && (
+			<a 
+				href={prevPage.path}
+				class="nav-btn group"
+				aria-label={`Página anterior: ${prevPage.label}`}
+			>
+				<svg class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M15 18L9 12L15 6" stroke="#b8a9ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</a>
+		)}
+		
+		{!prevPage && (
+			<button 
+				disabled
+				class="nav-btn-disabled"
+				aria-label="No hay página anterior"
+			>
+				<svg class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M15 18L9 12L15 6" stroke="#b8a9ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</button>
+		)}
+	</div>
 
-	{nextPage && (
-		<a 
-			href={nextPage.path}
-			class="nav-btn opacity-50 hover:opacity-100 transition-opacity duration-300"
-			aria-label={`Siguiente página: ${nextPage.label}`}
-		>
-			<svg class="w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<circle cx="12" cy="12" r="11" stroke="#b8a9ff" stroke-width="2" fill="rgba(184, 169, 255, 0.2)"/>
-				<path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="#b8a9ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-			</svg>
-		</a>
-	)}
-	
-	{!nextPage && (
-		<button 
-			disabled
-			class="nav-btn opacity-30 cursor-not-allowed"
-			aria-label="No hay siguiente página"
-		>
-			<svg class="w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<circle cx="12" cy="12" r="11" stroke="#b8a9ff" stroke-width="2" fill="rgba(184, 169, 255, 0.2)"/>
-				<path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="#b8a9ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-			</svg>
-		</button>
-	)}
+	<!-- Botón siguiente (derecha) -->
+	<div class="pointer-events-auto">
+		{nextPage && (
+			<a 
+				href={nextPage.path}
+				class="nav-btn group"
+				aria-label={`Siguiente página: ${nextPage.label}`}
+			>
+				<svg class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M9 18L15 12L9 6" stroke="#b8a9ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</a>
+		)}
+		
+		{!nextPage && (
+			<button 
+				disabled
+				class="nav-btn-disabled"
+				aria-label="No hay siguiente página"
+			>
+				<svg class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M9 18L15 12L9 6" stroke="#b8a9ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</button>
+		)}
+	</div>
 </div>
 
 <style>
 	.nav-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background: rgba(184, 169, 255, 0.1);
+		backdrop-filter: blur(10px);
+		border: 1px solid rgba(184, 169, 255, 0.2);
 		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-		transform-style: preserve-3d;
+		opacity: 0.6;
 	}
 
-	.nav-btn:hover:not(:disabled) {
-		transform: scale(1.1) translateZ(10px);
-		filter: drop-shadow(0 0 20px rgba(184, 169, 255, 0.6));
+	.nav-btn:hover {
+		opacity: 1;
+		background: rgba(184, 169, 255, 0.15);
+		border-color: rgba(184, 169, 255, 0.4);
+		transform: translateX(2px);
+		box-shadow: 0 0 20px rgba(184, 169, 255, 0.3);
 	}
 
-	.nav-btn:active:not(:disabled) {
+	.nav-btn:active {
 		transform: scale(0.95);
+	}
+
+	.nav-btn svg {
+		transition: transform 0.3s ease;
+	}
+
+	.nav-btn:hover svg {
+		transform: translateX(2px);
+	}
+
+	.nav-btn-disabled {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background: rgba(184, 169, 255, 0.05);
+		border: 1px solid rgba(184, 169, 255, 0.1);
+		opacity: 0.3;
+		cursor: not-allowed;
+	}
+
+	@media (min-width: 640px) {
+		.nav-btn, .nav-btn-disabled {
+			width: 44px;
+			height: 44px;
+		}
+	}
+
+	@media (min-width: 768px) {
+		.nav-btn, .nav-btn-disabled {
+			width: 48px;
+			height: 48px;
+		}
 	}
 </style>
 

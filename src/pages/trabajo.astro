@@ -5,7 +5,7 @@ import Logo from '../components/Logo.astro';
 ---
 
 <BaseLayout title="SwiftClick - Nuestra Forma de Trabajo">
-	<section class="min-h-screen relative z-10 overflow-hidden" style="width: 100vw; min-height: 100vh; background: linear-gradient(to right, #0f0f1a 0%, #1d2545 30%, #2d3a70 60%, #3d4a85 100%);">
+	<section class="hidden sm:block min-h-screen relative z-10 overflow-hidden" style="width: 100vw; min-height: 100vh; background: linear-gradient(to right, #0f0f1a 0%, #1d2545 30%, #2d3a70 60%, #3d4a85 100%);">
 		<!-- Header con logo -->
 		<header class="absolute top-0 left-0 w-full z-20 p-3 sm:p-4 md:p-6 lg:p-8">
 			<div class="flex items-center">
@@ -33,4 +33,11 @@ import Logo from '../components/Logo.astro';
 	</section>
 
 		<Navigation currentPage={5} totalPages={11} />
+
+	<script>
+		// Redirigir a la siguiente página en móvil
+		if (window.innerWidth < 640) {
+			window.location.href = '/integracion';
+		}
+	</script>
 </BaseLayout>

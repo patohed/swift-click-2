@@ -5,7 +5,7 @@ import Logo from '../components/Logo.astro';
 ---
 
 <BaseLayout title="Nuestra Visión - SwiftClick">
-	<section class="min-h-screen relative z-10 overflow-hidden px-4 sm:px-6 md:px-8 lg:px-16 flex flex-col" style="width: 100vw; min-height: 100vh; background: linear-gradient(to right, #0f0f1a 0%, #1d2545 30%, #2d3a70 60%, #3d4a85 100%);">
+	<section class="hidden sm:flex min-h-screen relative z-10 overflow-hidden px-4 sm:px-6 md:px-8 lg:px-16 flex-col" style="width: 100vw; min-height: 100vh; background: linear-gradient(to right, #0f0f1a 0%, #1d2545 30%, #2d3a70 60%, #3d4a85 100%);">
 		
 		<!-- Logo en la esquina superior izquierda -->
 		<div class="absolute top-4 sm:top-6 md:top-8 left-3 sm:left-4 md:left-6 lg:left-8 xl:left-16 z-20">
@@ -28,4 +28,11 @@ import Logo from '../components/Logo.astro';
 
 		<Navigation currentPage={8} totalPages={11} />
 	</section>
+
+	<script>
+		// Redirigir a la siguiente página en móvil
+		if (window.innerWidth < 640) {
+			window.location.href = '/vision-detalle';
+		}
+	</script>
 </BaseLayout>
