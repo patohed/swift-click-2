@@ -4,19 +4,113 @@ import '../styles/global.css';
 
 interface Props {
 	title?: string;
+	description?: string;
+	keywords?: string;
+	ogImage?: string;
+	canonical?: string;
 }
 
-const { title = 'SwiftClick S.A. - Marketing Digital' } = Astro.props;
+const { 
+	title = 'SwiftClick S.A. - Google Partner Certificado | Marketing Digital Argentina',
+	description = 'SwiftClick S.A. es Google Partner certificado especializado en inversión digital a gran escala en Argentina. Servicios de marketing digital, performance multicanal, Google Ads, gestión operativa y escalabilidad para grandes marcas.',
+	keywords = 'marketing digital argentina, google partner argentina, google ads argentina, inversión digital, performance marketing, marketing multicanal, agencia digital buenos aires, gestión google ads, certificado google partner, swiftclick argentina',
+	ogImage = '/og-image.jpg',
+	canonical = Astro.url.pathname
+} = Astro.props;
+
+const siteUrl = 'https://swiftclick.com.ar';
+const fullUrl = `${siteUrl}${canonical}`;
 ---
 
-<html lang="es">
+<html lang="es-AR">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, user-scalable=yes" />
 		<meta name="generator" content={Astro.generator} />
+		
+		<!-- SEO Básico -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<link rel="canonical" href={fullUrl} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={fullUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={`${siteUrl}${ogImage}`} />
+		<meta property="og:locale" content="es_AR" />
+		<meta property="og:site_name" content="SwiftClick S.A." />
+		
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={fullUrl} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+		
+		<!-- Información de Empresa -->
+		<meta name="author" content="SwiftClick S.A." />
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+		<meta name="googlebot" content="index, follow" />
+		<meta name="geo.region" content="AR-C" />
+		<meta name="geo.placename" content="Buenos Aires" />
+		<meta name="geo.position" content="-34.5875;-58.3974" />
+		<meta name="ICBM" content="-34.5875, -58.3974" />
+		
+		<!-- Theme & Mobile -->
 		<meta name="theme-color" content="#1a1a2e" />
-		<meta name="description" content="SwiftClick S.A. - Partner Estratégico en Inversión Digital a Gran Escala. Google Partner, Multicanal, Performance & Escalabilidad." />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+		<!-- Verificación y Analytics (agregar IDs reales) -->
+		<!-- <meta name="google-site-verification" content="TU_CODIGO_AQUI" /> -->
+		
+		<!-- JSON-LD Structured Data -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "ProfessionalService",
+				"name": "SwiftClick S.A.",
+				"description": "Google Partner certificado especializado en inversión digital a gran escala, marketing digital y performance multicanal en Argentina.",
+				"url": "https://swiftclick.com.ar",
+				"logo": "https://swiftclick.com.ar/swift_click.svg",
+				"image": "https://swiftclick.com.ar/og-image.jpg",
+				"telephone": "+54-11-XXXX-XXXX",
+				"email": "contacto@swiftclick.com.ar",
+				"address": {
+					"@type": "PostalAddress",
+					"streetAddress": "Av. Libertador 6299 - OF 201",
+					"addressLocality": "Buenos Aires",
+					"addressRegion": "CABA",
+					"postalCode": "C1428",
+					"addressCountry": "AR"
+				},
+				"geo": {
+					"@type": "GeoCoordinates",
+					"latitude": "-34.5875",
+					"longitude": "-58.3974"
+				},
+				"areaServed": {
+					"@type": "Country",
+					"name": "Argentina"
+				},
+				"sameAs": [
+					"https://www.linkedin.com/company/swiftclick"
+				],
+				"priceRange": "$$",
+				"openingHours": "Mo-Fr 09:00-18:00",
+				"aggregateRating": {
+					"@type": "AggregateRating",
+					"ratingValue": "5",
+					"reviewCount": "1"
+				}
+			}
+		</script>
+		
 		<title>{title}</title>
 		<!-- Tipografías según Manual de Marca SwiftClick -->
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">

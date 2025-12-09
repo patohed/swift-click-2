@@ -1,0 +1,22 @@
+# robots.txt para SwiftClick Argentina
+User-agent: *
+Allow: /
+
+# Bloquear archivos innecesarios
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /*?*utm_
+
+# Sitemaps
+Sitemap: https://swiftclick.com.ar/sitemap.xml
+Sitemap: https://swiftclick.com.ar/sitemap-index.xml
+
+# Configuración para bots específicos
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+# Crawl delay
+Crawl-delay: 0
