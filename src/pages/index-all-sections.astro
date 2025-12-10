@@ -11,17 +11,9 @@ import Logo from '../components/Logo.astro';
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
 		const sections = document.querySelectorAll('section');
-		const navDots = document.querySelectorAll('.nav-dot');
 		
-		console.log('Sections found:', sections.length);
-		console.log('Nav dots found:', navDots.length);
-		
-		// Función para actualizar el indicador activo
-		function updateActiveSection() {
+		window.addEventListener('scroll', () => {
 			const scrollY = window.scrollY;
-			const windowHeight = window.innerHeight;
-			let currentIndex = 0;
-			let minDistance = Infinity;
 			
 			sections.forEach((section, index) => {
 				const rect = section.getBoundingClientRect();
@@ -38,137 +30,26 @@ import Logo from '../components/Logo.astro';
 				});
 				
 				// Parallax para backgrounds
-				if (rect.top < windowHeight && rect.bottom > 0) {
+				if (rect.top < window.innerHeight && rect.bottom > 0) {
 					const yPos = offset * speed;
 					section.style.backgroundPositionY = `${yPos}px`;
 				}
-				
-				// Encontrar la sección más cercana al centro de la pantalla
-				const sectionCenter = rect.top + rect.height / 2;
-				const screenCenter = windowHeight / 2;
-				const distance = Math.abs(sectionCenter - screenCenter);
-				
-				if (distance < minDistance) {
-					minDistance = distance;
-					currentIndex = index;
-				}
-			});
-			
-			// Actualizar indicador de navegación
-			navDots.forEach((dot, index) => {
-				if (index === currentIndex) {
-					dot.classList.add('active');
-				} else {
-					dot.classList.remove('active');
-				}
-			});
-		}
-		
-		// Usar requestAnimationFrame para mejor performance
-		let ticking = false;
-		window.addEventListener('scroll', () => {
-			if (!ticking) {
-				window.requestAnimationFrame(() => {
-					updateActiveSection();
-					ticking = false;
-				});
-				ticking = true;
-			}
-		}, { passive: true });
-		
-		window.addEventListener('resize', updateActiveSection);
-		updateActiveSection(); // Llamar al cargar
-		
-		// Actualizar después de un pequeño delay para asegurar que todo esté cargado
-		setTimeout(updateActiveSection, 100);
-		setTimeout(updateActiveSection, 500);
-		
-		// Agregar listeners a los puntos de navegación para actualizar después del click
-		navDots.forEach((dot) => {
-			dot.addEventListener('click', () => {
-				setTimeout(updateActiveSection, 100);
-				setTimeout(updateActiveSection, 500);
-			});
-		});
-		
-		// Agregar listeners a TODOS los links de navegación (navbar y puntos)
-		document.querySelectorAll('a[href^="#"]').forEach((link) => {
-			link.addEventListener('click', () => {
-				setTimeout(updateActiveSection, 100);
-				setTimeout(updateActiveSection, 500);
-				setTimeout(updateActiveSection, 800);
 			});
 		});
 	});
 </script>
-
-	<!-- Indicador de navegación lateral -->
-	<div class="fixed right-2 sm:right-4 md:right-6 lg:right-8 top-1/2 transform -translate-y-1/2 z-40 hidden md:flex flex-col gap-2 md:gap-3">
-		<a href="#inicio" class="nav-dot group relative" title="Inicio">
-			<div class="w-2.5 h-2.5 rounded-full border-2 border-purple-400/40 transition-all duration-300 group-hover:border-purple-400 group-hover:scale-125"></div>
-			<span class="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Inicio</span>
-		</a>
-		<a href="#diferencial" class="nav-dot group relative" title="Diferencial">
-			<div class="w-2.5 h-2.5 rounded-full border-2 border-purple-400/40 transition-all duration-300 group-hover:border-purple-400 group-hover:scale-125"></div>
-			<span class="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Diferencial</span>
-		</a>
-		<a href="#filosofia" class="nav-dot group relative" title="Filosofía">
-			<div class="w-2.5 h-2.5 rounded-full border-2 border-purple-400/40 transition-all duration-300 group-hover:border-purple-400 group-hover:scale-125"></div>
-			<span class="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Filosofía</span>
-		</a>
-		<a href="#infraestructura" class="nav-dot group relative" title="Infraestructura">
-			<div class="w-2.5 h-2.5 rounded-full border-2 border-purple-400/40 transition-all duration-300 group-hover:border-purple-400 group-hover:scale-125"></div>
-			<span class="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Infraestructura</span>
-		</a>
-		<a href="#vision" class="nav-dot group relative" title="Visión">
-			<div class="w-2.5 h-2.5 rounded-full border-2 border-purple-400/40 transition-all duration-300 group-hover:border-purple-400 group-hover:scale-125"></div>
-			<span class="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Visión</span>
-		</a>
-		<a href="#integracion" class="nav-dot group relative" title="Integración">
-			<div class="w-2.5 h-2.5 rounded-full border-2 border-purple-400/40 transition-all duration-300 group-hover:border-purple-400 group-hover:scale-125"></div>
-			<span class="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Integración</span>
-		</a>
-		<a href="#estructura" class="nav-dot group relative" title="Estructura">
-			<div class="w-2.5 h-2.5 rounded-full border-2 border-purple-400/40 transition-all duration-300 group-hover:border-purple-400 group-hover:scale-125"></div>
-			<span class="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Estructura</span>
-		</a>
-		<a href="#contacto" class="nav-dot group relative" title="Contacto">
-			<div class="w-2.5 h-2.5 rounded-full border-2 border-purple-400/40 transition-all duration-300 group-hover:border-purple-400 group-hover:scale-125"></div>
-			<span class="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Contacto</span>
-		</a>
-		<a href="#formulario" class="nav-dot group relative" title="Formulario">
-			<div class="w-2.5 h-2.5 rounded-full border-2 border-purple-400/40 transition-all duration-300 group-hover:border-purple-400 group-hover:scale-125"></div>
-			<span class="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Formulario</span>
-		</a>
-	</div>
-
-	<!-- Navegación fija con scroll suave - Compacta en móvil, completa en desktop -->
-	<nav class="fixed top-3 sm:top-4 md:top-6 left-1/2 transform -translate-x-1/2 z-50 bg-black/40 backdrop-blur-lg rounded-full px-2 sm:px-3 md:px-4 lg:px-6 py-1.5 sm:py-2 md:py-2.5 border border-purple-400/20 shadow-lg shadow-purple-500/10">
-		<div class="flex gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 text-[9px] sm:text-[10px] md:text-xs lg:text-sm items-center">
-			<!-- Mobile: 4 emojis principales -->
-			<a href="#inicio" class="text-white/70 hover:text-purple-400 transition-colors px-1.5 py-1 rounded-full hover:bg-purple-400/10 md:hidden text-base">
-				🏠
-			</a>
-			<a href="#diferencial" class="text-white/70 hover:text-purple-400 transition-colors px-1.5 py-1 rounded-full hover:bg-purple-400/10 md:hidden text-base">
-				⚡
-			</a>
-			<a href="#contacto" class="text-white/70 hover:text-purple-400 transition-colors px-1.5 py-1 rounded-full hover:bg-purple-400/10 md:hidden text-base">
-				📧
-			</a>
-			<a href="#formulario" class="text-white/70 hover:text-purple-400 transition-colors px-1.5 py-1 rounded-full hover:bg-purple-400/10 md:hidden text-base">
-				📝
-			</a>
-			
-			<!-- Desktop: Todas las secciones con texto -->
-			<a href="#inicio" class="text-white/70 hover:text-purple-400 transition-colors px-1.5 md:px-2 py-1 rounded-full hover:bg-purple-400/10 hidden md:inline whitespace-nowrap">Inicio</a>
-			<a href="#diferencial" class="text-white/70 hover:text-purple-400 transition-colors px-1.5 md:px-2 py-1 rounded-full hover:bg-purple-400/10 hidden md:inline whitespace-nowrap">Diferencial</a>
-			<a href="#filosofia" class="text-white/70 hover:text-purple-400 transition-colors px-1.5 md:px-2 py-1 rounded-full hover:bg-purple-400/10 hidden md:inline whitespace-nowrap">Filosofía</a>
-			<a href="#infraestructura" class="text-white/70 hover:text-purple-400 transition-colors px-1.5 md:px-2 py-1 rounded-full hover:bg-purple-400/10 hidden md:inline whitespace-nowrap">Infraestructura</a>
-			<a href="#vision" class="text-white/70 hover:text-purple-400 transition-colors px-1.5 md:px-2 py-1 rounded-full hover:bg-purple-400/10 hidden md:inline whitespace-nowrap">Visión</a>
-			<a href="#integracion" class="text-white/70 hover:text-purple-400 transition-colors px-1.5 md:px-2 py-1 rounded-full hover:bg-purple-400/10 hidden lg:inline whitespace-nowrap">Integración</a>
-			<a href="#estructura" class="text-white/70 hover:text-purple-400 transition-colors px-1.5 md:px-2 py-1 rounded-full hover:bg-purple-400/10 hidden lg:inline whitespace-nowrap">Estructura</a>
-			<a href="#contacto" class="text-white/70 hover:text-purple-400 transition-colors px-1.5 md:px-2 py-1 rounded-full hover:bg-purple-400/10 hidden md:inline whitespace-nowrap">Contacto</a>
-			<a href="#formulario" class="text-white/70 hover:text-purple-400 transition-colors px-1.5 md:px-2 py-1 rounded-full hover:bg-purple-400/10 hidden md:inline whitespace-nowrap">Formulario</a>
+	<!-- Navegación fija con scroll suave -->
+	<nav class="fixed top-3 sm:top-4 md:top-6 left-1/2 transform -translate-x-1/2 z-50 bg-black/40 backdrop-blur-lg rounded-full px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 border border-purple-400/20 shadow-lg shadow-purple-500/10">
+		<div class="flex gap-2 sm:gap-3 md:gap-4 lg:gap-5 text-[10px] sm:text-xs md:text-sm">
+			<a href="#inicio" class="text-white/70 hover:text-purple-400 transition-colors whitespace-nowrap px-1 sm:px-2">Inicio</a>
+			<a href="#diferencial" class="text-white/70 hover:text-purple-400 transition-colors whitespace-nowrap px-1 sm:px-2 hidden sm:inline">Diferencial</a>
+			<a href="#filosofia" class="text-white/70 hover:text-purple-400 transition-colors whitespace-nowrap px-1 sm:px-2 hidden lg:inline">Filosofía</a>
+			<a href="#infraestructura" class="text-white/70 hover:text-purple-400 transition-colors whitespace-nowrap px-1 sm:px-2 hidden md:inline">Infraestructura</a>
+			<a href="#vision" class="text-white/70 hover:text-purple-400 transition-colors whitespace-nowrap px-1 sm:px-2 hidden sm:inline">Visión</a>
+			<a href="#integracion" class="text-white/70 hover:text-purple-400 transition-colors whitespace-nowrap px-1 sm:px-2 hidden xl:inline">Integración</a>
+			<a href="#estructura" class="text-white/70 hover:text-purple-400 transition-colors whitespace-nowrap px-1 sm:px-2 hidden xl:inline">Estructura</a>
+			<a href="#contacto" class="text-white/70 hover:text-purple-400 transition-colors whitespace-nowrap px-1 sm:px-2">Contacto</a>
+			<a href="#formulario" class="text-white/70 hover:text-purple-400 transition-colors whitespace-nowrap px-1 sm:px-2">Formulario</a>
 		</div>
 	</nav>
 
@@ -243,15 +124,15 @@ import Logo from '../components/Logo.astro';
 	<section id="diferencial" class="min-h-screen relative z-10 px-3 sm:px-4 md:px-6 lg:px-12 xl:px-16 flex flex-col justify-center snap-start" style="background: linear-gradient(to bottom, #0a0a0f 0%, #13131f 50%, #1a1a2e 100%);">
 		<div class="py-6 sm:py-8 md:py-12 lg:py-16 xl:py-20 max-w-7xl mx-auto w-full">
 			<div class="mb-6 sm:mb-8 md:mb-12 lg:mb-16">
-				<h2 data-parallax="0.22" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4">
+				<h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4">
 					NUESTRO <span style="color: #b8a9ff;">DIFERENCIAL</span>
 				</h2>
-				<p data-parallax="0.18" class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300">Lo que nos hace únicos en el mercado</p>
+				<p class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300">Lo que nos hace únicos en el mercado</p>
 			</div>
 
 			<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
 				<!-- Tarjeta 1 -->
-				<div data-parallax="0.14" class="rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 relative" style="background: linear-gradient(135deg, #2a2050 0%, #1a2545 100%);">
+				<div class="rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 relative" style="background: linear-gradient(135deg, #2a2050 0%, #1a2545 100%);">
 					<div class="absolute top-3 right-3 sm:top-4 sm:right-4 flex space-x-1">
 						<div class="w-1.5 h-1.5 rounded-full bg-purple-300/60"></div>
 						<div class="w-1.5 h-1.5 rounded-full bg-purple-300/60"></div>
@@ -263,7 +144,7 @@ import Logo from '../components/Logo.astro';
 				</div>
 
 				<!-- Tarjeta 2 -->
-				<div data-parallax="0.16" class="rounded-xl p-5 sm:p-6 relative" style="background: linear-gradient(135deg, #1d2550 0%, #1a3555 100%);">
+				<div class="rounded-xl p-5 sm:p-6 relative" style="background: linear-gradient(135deg, #1d2550 0%, #1a3555 100%);">
 					<div class="absolute top-4 right-4 flex space-x-1">
 						<div class="w-1.5 h-1.5 rounded-full bg-purple-300/60"></div>
 						<div class="w-1.5 h-1.5 rounded-full bg-purple-300/60"></div>
@@ -275,7 +156,7 @@ import Logo from '../components/Logo.astro';
 				</div>
 
 				<!-- Tarjeta 3 -->
-				<div data-parallax="0.13" class="rounded-xl p-5 sm:p-6 relative" style="background: linear-gradient(135deg, #2a2050 0%, #1a2545 100%);">
+				<div class="rounded-xl p-5 sm:p-6 relative" style="background: linear-gradient(135deg, #2a2050 0%, #1a2545 100%);">
 					<div class="absolute top-4 right-4 flex space-x-1">
 						<div class="w-1.5 h-1.5 rounded-full bg-purple-300/60"></div>
 						<div class="w-1.5 h-1.5 rounded-full bg-purple-300/60"></div>
@@ -313,7 +194,7 @@ import Logo from '../components/Logo.astro';
 	<!-- Sección 03: Filosofía -->
 	<section id="filosofia" class="min-h-screen relative z-10 px-4 sm:px-6 md:px-8 lg:px-16 flex flex-col justify-center snap-start" style="background: radial-gradient(circle at top right, #9d8df1 0%, #6a5acd 8%, #3a3a5a 20%, #1a1a2e 35%, #0f0f1a 50%, #080810 100%);">
 		<div class="max-w-6xl mx-auto px-4">
-			<p data-parallax="0.25" class="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-white leading-relaxed font-light text-center">
+			<p class="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-white leading-relaxed font-light text-center">
 				<span class="font-semibold" style="color: #b8a9ff;">Swiftclick no reemplaza nada</span>, potencia lo que el cliente y sus agencias ya tienen. 
 				<span class="block mt-6 sm:mt-8 md:mt-10 lg:mt-12">Somos <span class="font-semibold" style="color: #b8a9ff;">complemento</span>, no competencia.</span>
 			</p>
@@ -332,12 +213,12 @@ import Logo from '../components/Logo.astro';
 	<!-- Sección 04: Infraestructura -->
 	<section id="infraestructura" class="min-h-screen relative z-10 px-3 sm:px-4 md:px-6 lg:px-12 xl:px-16 flex flex-col justify-center snap-start" style="background: linear-gradient(135deg, #000000 0%, #0a0a0f 40%, #13131f 70%, #1a1a2e 100%);">
 		<div class="max-w-6xl mx-auto w-full">
-			<h2 data-parallax="0.23" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-8 sm:mb-10 md:mb-12 lg:mb-16 text-center px-4">
+			<h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-8 sm:mb-10 md:mb-12 lg:mb-16 text-center px-4">
 				NUESTRA <span style="color: #b8a9ff;">INFRAESTRUCTURA</span>
 			</h2>
 
 			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
-				<div data-parallax="0.15" class="relative group">
+				<div class="relative group">
 					<div class="absolute inset-0 opacity-50 blur-xl transition-opacity duration-300 group-hover:opacity-70" style="background: linear-gradient(135deg, #0a0a0f 0%, #2a2050 50%, #4a3570 100%); border-radius: 9999px 9999px 150px 9999px;"></div>
 					<div class="relative px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16 py-4 sm:py-5 md:py-6 lg:py-7 flex items-center justify-center text-center border border-purple-400/20" style="background: linear-gradient(135deg, rgba(10, 10, 15, 0.9) 0%, rgba(42, 32, 80, 0.9) 50%, rgba(74, 53, 112, 0.9) 100%); backdrop-filter: blur(10px); border-radius: 9999px 9999px 150px 9999px;">
 						<p class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed font-light tracking-wide" style="color: #d8c8ff;">
@@ -346,7 +227,7 @@ import Logo from '../components/Logo.astro';
 					</div>
 				</div>
 
-				<div data-parallax="0.17" class="relative group">
+				<div class="relative group">
 					<div class="absolute inset-0 opacity-50 blur-xl transition-opacity duration-300 group-hover:opacity-70" style="background: linear-gradient(135deg, #2d4575 0%, #3d3d7a 100%); border-radius: 150px 9999px 9999px 9999px;"></div>
 					<div class="relative px-8 sm:px-10 md:px-12 lg:px-16 py-5 sm:py-6 md:py-7 flex items-center justify-center text-center border border-blue-400/20" style="background: linear-gradient(135deg, rgba(29, 40, 80, 0.9) 0%, rgba(45, 69, 117, 0.9) 100%); backdrop-filter: blur(10px); border-radius: 150px 9999px 9999px 9999px;">
 						<p class="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed font-light tracking-wide" style="color: #d8c8ff;">
@@ -355,7 +236,7 @@ import Logo from '../components/Logo.astro';
 					</div>
 				</div>
 
-				<div data-parallax="0.14" class="relative group">
+				<div class="relative group">
 					<div class="absolute inset-0 opacity-50 blur-xl transition-opacity duration-300 group-hover:opacity-70" style="background: linear-gradient(135deg, #2d4575 0%, #3d3d7a 100%); border-radius: 9999px 150px 9999px 9999px;"></div>
 					<div class="relative px-8 sm:px-10 md:px-12 lg:px-16 py-5 sm:py-6 md:py-7 flex items-center justify-center text-center border border-blue-400/20" style="background: linear-gradient(135deg, rgba(29, 40, 80, 0.9) 0%, rgba(45, 69, 117, 0.9) 100%); backdrop-filter: blur(10px); border-radius: 9999px 150px 9999px 9999px;">
 						<p class="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed font-light tracking-wide" style="color: #d8c8ff;">
@@ -388,7 +269,7 @@ import Logo from '../components/Logo.astro';
 	<!-- Sección 05: Visión -->
 	<section id="vision" class="min-h-screen relative z-10 px-3 sm:px-4 md:px-6 lg:px-12 xl:px-16 flex flex-col justify-center snap-start" style="background: linear-gradient(to bottom right, #0a0a0f 0%, #13131f 50%, #1a1a2e 100%);">
 		<div class="max-w-5xl mx-auto text-center px-4">
-			<div data-parallax="0.2" class="mb-6 sm:mb-8 md:mb-12 lg:mb-16 inline-block">
+			<div class="mb-6 sm:mb-8 md:mb-12 lg:mb-16 inline-block">
 				<div class="px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 py-2 sm:py-3 md:py-4 lg:py-5 xl:py-6" style="background: linear-gradient(135deg, #4a3a7a 0%, #3a2a6a 100%);">
 					<h2 class="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-white tracking-wide uppercase font-light">
 						NUESTRA VISIÓN
@@ -396,7 +277,7 @@ import Logo from '../components/Logo.astro';
 				</div>
 			</div>
 
-			<p data-parallax="0.24" class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-white leading-relaxed px-2" style="font-weight: 500;">
+			<p class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-white leading-relaxed px-2" style="font-weight: 500;">
 				SER EL <span style="color: #b8a9ff; font-weight: 700;">HUB REGIONAL</span> QUE CONECTA INVERSIÓN
 				DIGITAL CON PERFORMANCE REAL.<br class="hidden sm:block">
 				CONSTRUIMOS UN MODELO DONDE ANUNCIANTES
@@ -426,19 +307,19 @@ import Logo from '../components/Logo.astro';
 			<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
 				<!-- Columna izquierda: 3 tarjetas -->
 				<div class="flex flex-col gap-4 sm:gap-6">
-					<div data-parallax="0.14" class="rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8" style="background: linear-gradient(135deg, #0e0e14 0%, #4e318a 100%);">
+					<div class="rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8" style="background: linear-gradient(135deg, #0e0e14 0%, #4e318a 100%);">
 						<p class="text-white text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed">
 							Operamos sobre MCC existentes y respetamos setups y agencias actuales.
 						</p>
 					</div>
 
-					<div data-parallax="0.16" class="rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8" style="background: linear-gradient(135deg, #0e0e14 0%, #253588 100%);">
+					<div class="rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8" style="background: linear-gradient(135deg, #0e0e14 0%, #253588 100%);">
 						<p class="text-white text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed">
 							Trabajamos con una modalidad de planes de financiación de acuerdo a cada cliente.
 						</p>
 					</div>
 
-					<div data-parallax="0.12" class="rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8" style="background: linear-gradient(135deg, #1d2850 0%, #2d4575 100%);">
+					<div class="rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8" style="background: linear-gradient(135deg, #1d2850 0%, #2d4575 100%);">
 						<p class="text-white text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed">
 							Nos comprometemos a traerles orden, soporte y estabilidad.
 						</p>
@@ -447,13 +328,13 @@ import Logo from '../components/Logo.astro';
 
 				<!-- Columna derecha: 2 tarjetas -->
 				<div class="flex flex-col gap-4 sm:gap-6">
-					<div data-parallax="0.15" class="rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8" style="background: linear-gradient(135deg, #2a2a55 0%, #3d3d7a 100%);">
+					<div class="rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8" style="background: linear-gradient(135deg, #2a2a55 0%, #3d3d7a 100%);">
 						<p class="text-white text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed">
 							Con nuestra línea de crédito la inversión fluye sin interrupciones y con posibilidad de escalar que sin ella no se podría lograr.
 						</p>
 					</div>
 
-					<div data-parallax="0.18" class="rounded-2xl p-4 sm:p-5 md:p-6 lg:p-10" style="background: linear-gradient(135deg, #2a2a5a 0%, #3d4a95 100%);">
+					<div class="rounded-2xl p-4 sm:p-5 md:p-6 lg:p-10" style="background: linear-gradient(135deg, #2a2a5a 0%, #3d4a95 100%);">
 						<h3 class="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold mb-3 sm:mb-4" style="color: #b8a9ff;">
 							NUESTRA ALTA POR LA<br>PLATAFORMA
 						</h3>
@@ -528,10 +409,10 @@ import Logo from '../components/Logo.astro';
 			<div class="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
 				<!-- Columna izquierda: Título -->
 				<div class="space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8 lg:col-span-2">
-					<h2 data-parallax="0.22" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl text-white leading-tight tracking-tight" style="font-weight: 300;">
+					<h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl text-white leading-tight tracking-tight" style="font-weight: 300;">
 						INFORMACIÓN<br>DE CONTACTO
 					</h2>
-					<div data-parallax="0.18" class="space-y-1">
+					<div class="space-y-1">
 						<p class="text-base sm:text-lg md:text-xl text-white/90 font-light">¿Necesitas soluciones?</p>
 						<p class="text-base sm:text-lg md:text-xl font-light" style="color: #b8a9ff;">Empecemos <span class="font-semibold">ahora.</span></p>
 					</div>
@@ -539,7 +420,7 @@ import Logo from '../components/Logo.astro';
 
 				<!-- Columna derecha: Pills de contacto -->
 				<div class="space-y-3 sm:space-y-4 flex flex-col lg:col-span-3">
-					<div data-parallax="0.14" class="inline-flex items-center gap-2 sm:gap-3 md:gap-4 px-3 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 lg:px-8 lg:py-6 rounded-full self-start sm:self-end" style="background: linear-gradient(90deg, rgba(10, 10, 15, 0.3) 0%, rgba(26, 26, 46, 0.5) 30%, #1a1a2e 60%, #2d4575 100%); backdrop-filter: blur(10px);">
+					<div class="inline-flex items-center gap-2 sm:gap-3 md:gap-4 px-3 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 lg:px-8 lg:py-6 rounded-full self-start sm:self-end" style="background: linear-gradient(90deg, rgba(10, 10, 15, 0.3) 0%, rgba(26, 26, 46, 0.5) 30%, #1a1a2e 60%, #2d4575 100%); backdrop-filter: blur(10px);">
 						<div class="flex items-center justify-center" style="width: 32px; height: 32px;">
 							<svg class="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" style="color: #b8a9ff;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
@@ -548,7 +429,7 @@ import Logo from '../components/Logo.astro';
 						<span class="text-xs sm:text-sm md:text-base lg:text-lg text-white" style="font-weight: 300;">swiftclick.com.ar</span>
 					</div>
 
-					<div data-parallax="0.16" class="inline-flex items-center gap-2 sm:gap-3 md:gap-4 px-3 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 lg:px-8 lg:py-6 rounded-full self-start sm:self-end" style="background: linear-gradient(90deg, #6a5acd 0%, #4a3570 40%, rgba(26, 26, 46, 0.5) 70%, rgba(10, 10, 15, 0.3) 100%); backdrop-filter: blur(10px);">
+					<div class="inline-flex items-center gap-2 sm:gap-3 md:gap-4 px-3 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 lg:px-8 lg:py-6 rounded-full self-start sm:self-end" style="background: linear-gradient(90deg, #6a5acd 0%, #4a3570 40%, rgba(26, 26, 46, 0.5) 70%, rgba(10, 10, 15, 0.3) 100%); backdrop-filter: blur(10px);">
 						<span class="text-xs sm:text-sm md:text-base lg:text-lg text-white" style="font-weight: 300;">contacto@swiftclick.com.ar</span>
 						<div class="flex items-center justify-center" style="width: 32px; height: 32px;">
 							<svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" style="color: #b8a9ff;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -557,7 +438,7 @@ import Logo from '../components/Logo.astro';
 						</div>
 					</div>
 
-					<div data-parallax="0.13" class="inline-flex items-center gap-2 sm:gap-3 md:gap-4 px-3 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 lg:px-8 lg:py-6 rounded-full self-start sm:self-end" style="background: linear-gradient(90deg, rgba(10, 10, 15, 0.3) 0%, rgba(26, 26, 46, 0.5) 30%, #1a1a2e 60%, #2d4575 100%); backdrop-filter: blur(10px);">
+					<div class="inline-flex items-center gap-2 sm:gap-3 md:gap-4 px-3 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 lg:px-8 lg:py-6 rounded-full self-start sm:self-end" style="background: linear-gradient(90deg, rgba(10, 10, 15, 0.3) 0%, rgba(26, 26, 46, 0.5) 30%, #1a1a2e 60%, #2d4575 100%); backdrop-filter: blur(10px);">
 						<div class="flex items-center justify-center" style="width: 32px; height: 32px;">
 							<svg class="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" style="color: #b8a9ff;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -607,11 +488,11 @@ import Logo from '../components/Logo.astro';
 				<span style="background: linear-gradient(135deg, #6a5acd 0%, #9d8df1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">HABLEMOS</span>
 			</h2>
 
-			<p data-parallax="0.16" class="text-sm sm:text-base md:text-lg text-gray-300 text-center mb-8 sm:mb-10 md:mb-12">
+			<p class="text-sm sm:text-base md:text-lg text-gray-300 text-center mb-8 sm:mb-10 md:mb-12">
 				Completa el formulario y nos pondremos en contacto contigo
 			</p>
 
-			<form data-parallax="0.12" class="w-full max-w-2xl mx-auto space-y-4 sm:space-y-5 md:space-y-6">
+			<form class="w-full max-w-2xl mx-auto space-y-4 sm:space-y-5 md:space-y-6">
 				<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
 					<div class="relative">
 						<div class="absolute top-3 right-3 sm:top-4 sm:right-4 flex gap-1.5">
@@ -725,17 +606,5 @@ import Logo from '../components/Logo.astro';
 
 	section {
 		scroll-snap-align: start;
-	}
-
-	/* Estilos para los puntos de navegación lateral */
-	.nav-dot.active > div {
-		background: #b8a9ff;
-		border-color: #b8a9ff;
-		box-shadow: 0 0 12px rgba(184, 169, 255, 0.6);
-		transform: scale(1.3);
-	}
-
-	.nav-dot > div {
-		transition: all 0.3s ease;
 	}
 </style>

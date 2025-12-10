@@ -7,22 +7,22 @@
 /* Secundaria: Roboto (para contraste jerárquico) */
 
 h1 {
-	font-family: 'TT Commons', sans-serif;
+	font-family: 'Inter', sans-serif;
 	font-weight: 800; /* Extra Bold - Título Principal */
 }
 
 h2 {
-	font-family: 'TT Commons', sans-serif;
+	font-family: 'Inter', sans-serif;
 	font-weight: 700; /* Bold - Título Secundario */
 }
 
 h3 {
-	font-family: 'TT Commons', sans-serif;
+	font-family: 'Inter', sans-serif;
 	font-weight: 600; /* DemiBold - Encabezados/Secciones */
 }
 
 p {
-	font-family: 'TT Commons', sans-serif;
+	font-family: 'Inter', sans-serif;
 	font-weight: 400; /* Regular - Párrafos */
 }
 
