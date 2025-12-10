@@ -178,12 +178,22 @@ html {
 @media (hover: none) and (pointer: coarse) {
   * {
     -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
   }
   
   /* Aumentar áreas de toque para mejor usabilidad */
   button, a {
     min-height: 44px;
     min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Optimizar scroll en dispositivos táctiles */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
@@ -204,6 +214,48 @@ html {
 /* Landscape mode en móviles */
 @media (max-width: 767px) and (orientation: landscape) {
   section {
-    min-height: auto !important;
+    min-height: 100vh !important;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+}
+
+/* Optimizaciones adicionales para responsive */
+@media (max-width: 639px) {
+  /* Evitar zoom en inputs */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+  
+  /* Navegación fixed optimizada */
+  nav {
+    backdrop-filter: blur(12px) !important;
+  }
+  
+  /* Mejorar spacing en cards */
+  .card, [class*="rounded"] {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Mejor rendimiento en animaciones móviles */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimización para pantallas de alta resolución */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Mejorar nitidez de textos */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 }
