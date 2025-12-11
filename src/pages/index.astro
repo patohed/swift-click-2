@@ -10,8 +10,12 @@ import Logo from '../components/Logo.astro';
 >
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
-		const sections = document.querySelectorAll('section');
+		const allSections = document.querySelectorAll('section');
 		const navDots = document.querySelectorAll('.nav-dot');
+		
+		// Mapeo de IDs de secciones principales a índices de dots
+		const mainSections = ['inicio', 'formulario', 'contacto', 'nosotros'];
+		const sections = mainSections.map(id => document.getElementById(id)).filter(s => s !== null);
 		
 		console.log('Sections found:', sections.length);
 		console.log('Nav dots found:', navDots.length);
@@ -23,7 +27,8 @@ import Logo from '../components/Logo.astro';
 			let currentIndex = 0;
 			let minDistance = Infinity;
 			
-			sections.forEach((section, index) => {
+			// Aplicar parallax a todas las secciones
+			allSections.forEach((section) => {
 				const rect = section.getBoundingClientRect();
 				const sectionTop = rect.top + scrollY;
 				const offset = scrollY - sectionTop;
@@ -42,8 +47,11 @@ import Logo from '../components/Logo.astro';
 					const yPos = offset * speed;
 					section.style.backgroundPositionY = `${yPos}px`;
 				}
-				
-				// Encontrar la sección más cercana al centro de la pantalla
+			});
+			
+			// Encontrar la sección principal más cercana al centro de la pantalla
+			sections.forEach((section, index) => {
+				const rect = section.getBoundingClientRect();
 				const sectionCenter = rect.top + rect.height / 2;
 				const screenCenter = windowHeight / 2;
 				const distance = Math.abs(sectionCenter - screenCenter);
