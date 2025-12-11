@@ -188,27 +188,27 @@ import Logo from '../components/Logo.astro';
 	</div>
 
 	<!-- Navegación fija con scroll suave - Compacta en móvil, completa en desktop -->
-	<nav class="fixed top-3 sm:top-4 md:top-6 left-1/2 transform -translate-x-1/2 z-50 bg-black/40 backdrop-blur-lg rounded-full px-3 sm:px-4 md:px-4 lg:px-6 py-2 sm:py-2.5 md:py-2.5 border border-purple-400/20 shadow-lg shadow-purple-500/10">
-		<div class="flex gap-2 sm:gap-3 md:gap-3 lg:gap-4 text-[9px] sm:text-[10px] md:text-xs lg:text-sm items-center">
-			<!-- Mobile: Solo emojis grandes -->
-			<a href="#inicio" class="text-white/70 hover:text-purple-400 active:text-purple-300 transition-colors px-2 py-1.5 rounded-full hover:bg-purple-400/10 active:bg-purple-400/20 md:hidden text-xl">
+	<nav class="fixed top-3 sm:top-4 lg:top-6 left-1/2 transform -translate-x-1/2 z-50 bg-black/40 backdrop-blur-lg rounded-full px-3 sm:px-4 lg:px-6 py-2 sm:py-2.5 lg:py-3 border border-purple-400/20 shadow-lg shadow-purple-500/10">
+		<div class="flex gap-2.5 sm:gap-3 lg:gap-4 items-center">
+			<!-- Mobile y Tablet: Solo emojis grandes -->
+			<a href="#inicio" class="text-white/70 hover:text-purple-400 active:text-purple-300 transition-all duration-200 px-2.5 py-2 rounded-full hover:bg-purple-400/10 active:bg-purple-400/20 lg:hidden text-2xl leading-none touch-manipulation" aria-label="Inicio">
 				🏠
 			</a>
-			<a href="#formulario" class="text-white/70 hover:text-purple-400 active:text-purple-300 transition-colors px-2 py-1.5 rounded-full hover:bg-purple-400/10 active:bg-purple-400/20 md:hidden text-xl">
+			<a href="#formulario" class="text-white/70 hover:text-purple-400 active:text-purple-300 transition-all duration-200 px-2.5 py-2 rounded-full hover:bg-purple-400/10 active:bg-purple-400/20 lg:hidden text-2xl leading-none touch-manipulation" aria-label="Formulario">
 				📝
 			</a>
-			<a href="#contacto" class="text-white/70 hover:text-purple-400 active:text-purple-300 transition-colors px-2 py-1.5 rounded-full hover:bg-purple-400/10 active:bg-purple-400/20 md:hidden text-xl">
+			<a href="#contacto" class="text-white/70 hover:text-purple-400 active:text-purple-300 transition-all duration-200 px-2.5 py-2 rounded-full hover:bg-purple-400/10 active:bg-purple-400/20 lg:hidden text-2xl leading-none touch-manipulation" aria-label="Contacto">
 				📧
 			</a>
-			<a href="#nosotros" class="text-white/70 hover:text-purple-400 active:text-purple-300 transition-colors px-2 py-1.5 rounded-full hover:bg-purple-400/10 active:bg-purple-400/20 md:hidden text-xl">
+			<a href="#nosotros" class="text-white/70 hover:text-purple-400 active:text-purple-300 transition-all duration-200 px-2.5 py-2 rounded-full hover:bg-purple-400/10 active:bg-purple-400/20 lg:hidden text-2xl leading-none touch-manipulation" aria-label="Nosotros">
 				👥
 			</a>
 			
 			<!-- Desktop: Todas las secciones con texto -->
-			<a href="#inicio" class="text-white/70 hover:text-purple-400 transition-colors px-2 md:px-3 py-1 rounded-full hover:bg-purple-400/10 hidden md:inline whitespace-nowrap">Inicio</a>
-			<a href="#formulario" class="text-white/70 hover:text-purple-400 transition-colors px-2 md:px-3 py-1 rounded-full hover:bg-purple-400/10 hidden md:inline whitespace-nowrap">Formulario</a>
-			<a href="#contacto" class="text-white/70 hover:text-purple-400 transition-colors px-2 md:px-3 py-1 rounded-full hover:bg-purple-400/10 hidden md:inline whitespace-nowrap">Contacto</a>
-			<a href="#nosotros" class="text-white/70 hover:text-purple-400 transition-colors px-2 md:px-3 py-1 rounded-full hover:bg-purple-400/10 hidden md:inline whitespace-nowrap">Nosotros</a>
+			<a href="#inicio" class="text-white/70 hover:text-purple-400 transition-colors px-3 py-1.5 rounded-full hover:bg-purple-400/10 hidden lg:inline whitespace-nowrap text-sm">Inicio</a>
+			<a href="#formulario" class="text-white/70 hover:text-purple-400 transition-colors px-3 py-1.5 rounded-full hover:bg-purple-400/10 hidden lg:inline whitespace-nowrap text-sm">Formulario</a>
+			<a href="#contacto" class="text-white/70 hover:text-purple-400 transition-colors px-3 py-1.5 rounded-full hover:bg-purple-400/10 hidden lg:inline whitespace-nowrap text-sm">Contacto</a>
+			<a href="#nosotros" class="text-white/70 hover:text-purple-400 transition-colors px-3 py-1.5 rounded-full hover:bg-purple-400/10 hidden lg:inline whitespace-nowrap text-sm">Nosotros</a>
 		</div>
 	</nav>
 
