@@ -111,6 +111,50 @@ import Logo from '../components/Logo.astro';
 </script>
 
 <script>
+	// Menú hamburguesa mobile
+	document.addEventListener('DOMContentLoaded', () => {
+		const menuBtn = document.getElementById('mobile-menu-btn');
+		const menu = document.getElementById('mobile-menu');
+		const backdrop = document.getElementById('mobile-menu-backdrop');
+		const panel = document.getElementById('mobile-menu-panel');
+		const menuLinks = document.querySelectorAll('.mobile-menu-link');
+		
+		let isOpen = false;
+		
+		function toggleMenu() {
+			isOpen = !isOpen;
+			
+			if (isOpen) {
+				menu.classList.remove('pointer-events-none');
+				backdrop.classList.remove('opacity-0');
+				backdrop.classList.add('opacity-100');
+				panel.classList.remove('translate-x-full');
+				panel.classList.add('translate-x-0');
+				document.body.style.overflow = 'hidden';
+			} else {
+				backdrop.classList.remove('opacity-100');
+				backdrop.classList.add('opacity-0');
+				panel.classList.remove('translate-x-0');
+				panel.classList.add('translate-x-full');
+				document.body.style.overflow = '';
+				setTimeout(() => {
+					menu.classList.add('pointer-events-none');
+				}, 300);
+			}
+		}
+		
+		menuBtn?.addEventListener('click', toggleMenu);
+		backdrop?.addEventListener('click', toggleMenu);
+		
+		menuLinks.forEach(link => {
+			link.addEventListener('click', () => {
+				toggleMenu();
+			});
+		});
+	});
+</script>
+
+<script>
 	// Manejo del formulario de contacto
 	document.addEventListener('DOMContentLoaded', () => {
 		const form = document.getElementById('contactForm');
@@ -195,30 +239,38 @@ import Logo from '../components/Logo.astro';
 		</a>
 	</div>
 
-	<!-- Navegación fija con scroll suave - Compacta en móvil, completa en desktop -->
-	<nav class="fixed top-3 sm:top-4 lg:top-6 left-1/2 transform -translate-x-1/2 z-50 bg-black/40 backdrop-blur-lg rounded-full px-3 sm:px-4 lg:px-6 py-2 sm:py-2.5 lg:py-3 border border-purple-400/20 shadow-lg shadow-purple-500/10">
-		<div class="flex gap-2.5 sm:gap-3 lg:gap-4 items-center">
-			<!-- Mobile y Tablet: Solo emojis grandes -->
-			<a href="#inicio" class="nav-mobile text-white/70 hover:text-purple-400 active:text-purple-300 transition-all duration-200 px-2.5 py-2 rounded-full hover:bg-purple-400/10 active:bg-purple-400/20 text-2xl leading-none touch-manipulation" aria-label="Inicio">
-				🏠
-			</a>
-			<a href="#formulario" class="nav-mobile text-white/70 hover:text-purple-400 active:text-purple-300 transition-all duration-200 px-2.5 py-2 rounded-full hover:bg-purple-400/10 active:bg-purple-400/20 text-2xl leading-none touch-manipulation" aria-label="Formulario">
-				📝
-			</a>
-			<a href="#contacto" class="nav-mobile text-white/70 hover:text-purple-400 active:text-purple-300 transition-all duration-200 px-2.5 py-2 rounded-full hover:bg-purple-400/10 active:bg-purple-400/20 text-2xl leading-none touch-manipulation" aria-label="Contacto">
-				📧
-			</a>
-			<a href="#nosotros" class="nav-mobile text-white/70 hover:text-purple-400 active:text-purple-300 transition-all duration-200 px-2.5 py-2 rounded-full hover:bg-purple-400/10 active:bg-purple-400/20 text-2xl leading-none touch-manipulation" aria-label="Nosotros">
-				👥
-			</a>
-			
-			<!-- Desktop: Todas las secciones con texto -->
-			<a href="#inicio" class="nav-desktop text-white/70 hover:text-purple-400 transition-colors px-3 py-1.5 rounded-full hover:bg-purple-400/10 whitespace-nowrap text-sm">Inicio</a>
-			<a href="#formulario" class="nav-desktop text-white/70 hover:text-purple-400 transition-colors px-3 py-1.5 rounded-full hover:bg-purple-400/10 whitespace-nowrap text-sm">Formulario</a>
-			<a href="#contacto" class="nav-desktop text-white/70 hover:text-purple-400 transition-colors px-3 py-1.5 rounded-full hover:bg-purple-400/10 whitespace-nowrap text-sm">Contacto</a>
-			<a href="#nosotros" class="nav-desktop text-white/70 hover:text-purple-400 transition-colors px-3 py-1.5 rounded-full hover:bg-purple-400/10 whitespace-nowrap text-sm">Nosotros</a>
+	<!-- Navegación Desktop -->
+	<nav class="nav-desktop fixed top-3 lg:top-4 right-3 lg:right-4 z-40 bg-black/40 backdrop-blur-lg rounded-full px-3 lg:px-4 py-1.5 border border-purple-400/20 shadow-lg shadow-purple-500/10">
+		<div class="flex gap-2 lg:gap-3 items-center">
+			<a href="#inicio" class="text-white/70 hover:text-purple-400 transition-colors px-3 py-1.5 rounded-full hover:bg-purple-400/10 whitespace-nowrap text-sm">Inicio</a>
+			<a href="#formulario" class="text-white/70 hover:text-purple-400 transition-colors px-3 py-1.5 rounded-full hover:bg-purple-400/10 whitespace-nowrap text-sm">Formulario</a>
+			<a href="#contacto" class="text-white/70 hover:text-purple-400 transition-colors px-3 py-1.5 rounded-full hover:bg-purple-400/10 whitespace-nowrap text-sm">Contacto</a>
+			<a href="#nosotros" class="text-white/70 hover:text-purple-400 transition-colors px-3 py-1.5 rounded-full hover:bg-purple-400/10 whitespace-nowrap text-sm">Nosotros</a>
 		</div>
 	</nav>
+
+	<!-- Botón Hamburguesa Mobile -->
+	<button id="mobile-menu-btn" class="nav-mobile fixed top-3 right-3 z-50 bg-black/60 backdrop-blur-lg rounded-lg p-2.5 border border-purple-400/30 shadow-lg transition-all duration-300 hover:bg-purple-600/30 active:scale-95" aria-label="Menú">
+		<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+		</svg>
+	</button>
+
+	<!-- Menú Mobile Overlay -->
+	<div id="mobile-menu" class="nav-mobile fixed inset-0 z-40 pointer-events-none">
+		<!-- Backdrop -->
+		<div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+		
+		<!-- Menú lateral -->
+		<div id="mobile-menu-panel" class="absolute top-0 right-0 h-full w-64 bg-gradient-to-b from-black/95 to-purple-950/95 backdrop-blur-xl border-l border-purple-400/20 shadow-2xl transform translate-x-full transition-transform duration-300">
+			<div class="flex flex-col h-full pt-20 px-6">
+				<a href="#inicio" class="mobile-menu-link text-white hover:text-purple-400 py-4 border-b border-purple-400/10 transition-colors text-lg font-medium">Inicio</a>
+				<a href="#formulario" class="mobile-menu-link text-white hover:text-purple-400 py-4 border-b border-purple-400/10 transition-colors text-lg font-medium">Formulario</a>
+				<a href="#contacto" class="mobile-menu-link text-white hover:text-purple-400 py-4 border-b border-purple-400/10 transition-colors text-lg font-medium">Contacto</a>
+				<a href="#nosotros" class="mobile-menu-link text-white hover:text-purple-400 py-4 border-b border-purple-400/10 transition-colors text-lg font-medium">Nosotros</a>
+			</div>
+		</div>
+	</div>
 
 	<!-- Sección 01: Hero / Partner Integral -->
 	<section id="inicio" class="min-h-screen relative z-10 overflow-hidden flex flex-col snap-start" style="background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 30%, #2d2550 60%, #3d3570 100%);">
